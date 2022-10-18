@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private GameObject playerPosition;
+
+    private Rigidbody enemyRigidbody;
+    private float speed = 500;
+
+
+    private void Start()
     {
-        
+        playerPosition = GameObject.Find("Player");
+        enemyRigidbody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
+        //okresla w którym kierunku kula ma siê poruszaæ
+        Vector3 moveDirection = (playerPosition.transform.position - transform.position).normalized;
+
+        enemyRigidbody.AddForce(moveDirection * speed * Time.deltaTime);
+
+
+        //jesli wróg spadnie zostaje zniszczony
+        if (transform.position.y < -2)
+        {
+            Destroy(gameObject);
+        }
+
         
     }
 }
