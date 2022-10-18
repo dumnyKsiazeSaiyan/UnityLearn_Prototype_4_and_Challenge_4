@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Rigidbody playerRigidbody;
+    private GameObject focalPoint;
+
+    public float movementSpeed = 60;
+    public float verticalAxis;
+
+    public Vector3 rotateFromCamera;
+    private void Start()
     {
-        
+        playerRigidbody = GetComponent<Rigidbody>();
+        focalPoint = GameObject.Find("FocalPoint");
+    }
+    private void Update()
+    {
+        PlayerMovement();
     }
 
-    // Update is called once per frame
-    void Update()
+    void PlayerMovement()
     {
-        
+        rotateFromCamera = focalPoint.transform.forward;
+        verticalAxis = Input.GetAxis("Vertical");
+
+
+        playerRigidbody.AddForce(Time.deltaTime * verticalAxis * movementSpeed * rotateFromCamera);
+
     }
 }
