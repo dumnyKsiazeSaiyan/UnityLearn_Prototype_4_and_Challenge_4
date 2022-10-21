@@ -13,7 +13,7 @@ public class SpawnManager : MonoBehaviour
 
     public int numberToSpawn = 0;
 
-    private float spawnRange = 15;
+    private float spawnRange = 15.0f;
     private void Update()
     {
 

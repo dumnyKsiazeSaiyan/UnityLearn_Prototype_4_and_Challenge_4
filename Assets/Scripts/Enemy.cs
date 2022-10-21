@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     private GameObject playerPosition;
 
     private Rigidbody enemyRigidbody;
-    private float speed = 500;
+    private float speed = 500.0f;
 
 
     private void Start()

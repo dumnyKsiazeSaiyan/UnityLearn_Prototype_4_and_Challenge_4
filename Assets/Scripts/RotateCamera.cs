@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class RotateCamera : MonoBehaviour
 {
-    private float rotationSpeed = 60;
+    private float rotationSpeed = 60.0f;
     private float horizontalAxis;
 
     //Rotation Speed Increased Over Time
-    private float holdKey = 1;
+    private float holdKey = 1.0f;
 
 
     private void Update()
