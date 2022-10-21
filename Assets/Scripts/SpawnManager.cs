@@ -5,38 +5,42 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefab;
+    public GameObject[] powerupsPrefab;
 
 
     public int waveNumber = 0;
-    public int numberOfEnemyOnIsland;
+    public int enemyCount;
 
 
     public int numberToSpawn = 0;
 
     private float spawnRange = 15.0f;
+
     private void Update()
     {
 
 
-        SpawnEnemy(numberToSpawn);
+        SpawnEnemyWave(numberToSpawn);
 
 
 
     }
 
     //Spawni okreœlona ilosæ wrogów
-    void SpawnEnemy(int amountEnemy)
+    void SpawnEnemyWave(int enemiesToSpawn)
     {
         //aktualizuje libczbê wrogów akutalnie na wyspie
-        numberOfEnemyOnIsland = FindObjectsOfType<Enemy>().Length;
+        enemyCount = FindObjectsOfType<Enemy>().Length;
 
-        if (numberOfEnemyOnIsland == 0)
+        if (enemyCount == 0)
         {
             waveNumber++;
             numberToSpawn++;
-            for (int i = 0; i < amountEnemy; i++)
+            SpawnPowerup(2);
+            for (int i = 0; i < enemiesToSpawn; i++)
             {
-                Instantiate(enemyPrefab[0], GenerateSpawnPosition(), enemyPrefab[0].transform.rotation);
+                int randomEnemy = Random.Range(0, enemyPrefab.Length);
+                Instantiate(enemyPrefab[randomEnemy], GenerateSpawnPosition(), enemyPrefab[randomEnemy].transform.rotation);
 
             }
         }
@@ -52,5 +56,15 @@ public class SpawnManager : MonoBehaviour
 
         return rangeToSpawn;
 
+    }
+
+    void SpawnPowerup(int howMuchPowerupsToSpawn)
+    {
+        for (int i = 0; i < howMuchPowerupsToSpawn; i++)
+        {
+            int randomPowerup = Random.Range(0, powerupsPrefab.Length);
+            Instantiate(powerupsPrefab[randomPowerup], GenerateSpawnPosition(), powerupsPrefab[randomPowerup].transform.rotation);
+
+        }
     }
 }

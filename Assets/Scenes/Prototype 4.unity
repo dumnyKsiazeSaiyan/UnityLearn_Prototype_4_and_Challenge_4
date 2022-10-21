@@ -276,8 +276,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab:
   - {fileID: 6000110949828358767, guid: 23d21fe65bce58143a67fb03c27c3632, type: 3}
+  powerupsPrefab:
+  - {fileID: 7155754679375254531, guid: 73d3ad5fa73319e4a8318d0afa514570, type: 3}
   waveNumber: 0
-  numberOfEnemyOnIsland: 0
+  enemyCount: 0
   numberToSpawn: 1
 --- !u!4 &844636220
 Transform:
